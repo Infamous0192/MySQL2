@@ -139,7 +139,7 @@ $unit = query("SELECT * FROM unit_kerja");
           <td><?= $row['tempat_lahir'] . ', ' . $row['tanggal_lahir'] ?></td>
           <td><img width="100" src="<?= '/' . FOLDER_NAME . '/img/' . $row['foto'] ?>" alt=""></td>
           <td>
-            <a href="<?= BASE_URL . '/hapus?nip=' . $row['nip'] ?>">
+            <a href="<?= BASE_URL . '/pegawai/hapus?nip=' . $row['nip'] ?>">
               <button class="btn btn-danger">Hapus</button>
             </a>
             <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ubah<?= $row['nip'] ?>">Ubah</button>
