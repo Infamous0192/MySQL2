@@ -3,4 +3,6 @@ define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'pemwebdas_db');
-define('BASE_URL', '/mysql2/index.php');
+define('FOLDER_NAME', 'mysql2');
+define('BASE_URI', 'http://localhost/' . FOLDER_NAME);
+define('BASE_URL', '/' . FOLDER_NAME . '/index.php');

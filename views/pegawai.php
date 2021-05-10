@@ -4,7 +4,7 @@ $action = isset($url[4]) ? explode('?', $url[4]) : [''];
 
 switch (strtolower($action[0])) {
   case 'hapus':
-    if (hapusUnit($_GET['id']) > 0) {
+    if (hapusPegawai($_GET['nip']) > 0) {
       header('Location: index.php');
     }
     break;
@@ -137,7 +137,7 @@ $unit = query("SELECT * FROM unit_kerja");
           <td><?= $row['nama_unitkerja'] ?></td>
           <td><?= $row['nama_jabatan'] ?></td>
           <td><?= $row['tempat_lahir'] . ', ' . $row['tanggal_lahir'] ?></td>
-          <td><img width="100" src="<?= 'http://localhost/mysql2/img/' . $row['foto'] ?>" alt=""></td>
+          <td><img width="100" src="<?= '/' . FOLDER_NAME . '/img/' . $row['foto'] ?>" alt=""></td>
           <td>
             <a href="<?= BASE_URL . '/hapus?nip=' . $row['nip'] ?>">
               <button class="btn btn-danger">Hapus</button>
