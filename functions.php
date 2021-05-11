@@ -187,7 +187,7 @@ function ubahPegawai($data)
 		$gambar = upload();
 	}
 
-	$query = "UPDATE mahasiswa SET
+	$query = "UPDATE pegawai SET
 				nama_pegawai = '$nama',
 				id_unitkerja = '$unit',
 				id_jabatan = '$jabatan',
@@ -200,15 +200,4 @@ function ubahPegawai($data)
 	mysqli_query($conn, $query);
 
 	return mysqli_affected_rows($conn);
-}
-
-function cari($keyword)
-{
-	$query = "SELECT * FROM mahasiswa
-				WHERE
-			  nama LIKE '%$keyword%' OR
-			  alamat LIKE '%$keyword%' OR
-			  hobi LIKE '%$keyword%'
-			";
-	return query($query);
 }
