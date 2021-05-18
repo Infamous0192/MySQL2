@@ -7,6 +7,56 @@ if (!$conn) {
 	die("ERROR: Can't connect to database");
 }
 
+function privateRoute()
+{
+	if (!isset($_SESSION['username'])) {
+		if (!empty($_COOKIE)) {
+			$_SESSION = $_COOKIE;
+			header('Location: home');
+		}
+		header('Location: login');
+	}
+}
+
+function logout()
+{
+	setcookie('username', '', time() - 3600);
+	setcookie('password', '', time() - 3600);
+	session_unset();
+	session_destroy();
+	header('Location: home');
+}
+
+function login($data)
+{
+	$username = $data['username'];
+	$password = $data['password'];
+
+	$user = query("SELECT * FROM pengguna WHERE username='$username'");
+
+	if (!count($user)) {
+		echo '<div class="alert alert-danger" role="alert">User tidak ditemukan</div>';
+		return;
+	}
+
+	$hashedPassword = md5($password);
+
+	if ($user[0]['password'] !== $hashedPassword) {
+		echo '<div class="alert alert-danger" role="alert">Password salah</div>';
+		return;
+	}
+
+	$_SESSION['username'] = $username;
+	$_SESSION['nama'] = $user[0]['nama'];
+
+	if ($data['remember']) {
+		setcookie('username', $username, time() + 3600);
+		setcookie('password', $password, time() + 3600);
+	}
+
+	header('Location: home');
+}
+
 function render($path, $title)
 {
 	include './layouts/header.php';
@@ -197,6 +247,28 @@ function ubahPegawai($data)
 			  WHERE nip = $nip
 			";
 
+	mysqli_query($conn, $query);
+
+	return mysqli_affected_rows($conn);
+}
+
+function tambahPengguna($data) {
+	global $conn;
+	$username = $data['username'];
+	$password = $data['password'];
+	$nama = $data['nama'];
+	$hashedPassword = md5($password);
+
+	$query = "INSERT INTO pengguna VALUES ('', '$username', '$hashedPassword', '$nama')";
+	mysqli_query($conn, $query);
+
+	return mysqli_affected_rows($conn);
+}
+
+function hapusPengguna($id) {
+	global $conn;
+
+	$query = "DELETE FROM pengguna WHERE id_pengguna=$id";
 	mysqli_query($conn, $query);
 
 	return mysqli_affected_rows($conn);

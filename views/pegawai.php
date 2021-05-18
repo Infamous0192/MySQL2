@@ -150,7 +150,7 @@ $unit = query("SELECT * FROM unit_kerja");
                     <input type="hidden" name="nip" value="<?= $row['nip'] ?>">
                     <input type="hidden" name="gambarLama" value="<?= $row['foto'] ?>">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Tambah pegawai</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Ubah pegawai</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
