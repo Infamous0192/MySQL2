@@ -14,7 +14,9 @@ switch (strtolower($action[0])) {
     }
     break;
   default:
-    if (isset($_POST["submit"]) && tambahPegawai($_POST) > 0) {
+    if (isset($_POST["submit"]) > 0) {
+      tambahPengguna($_POST);
+      tambahPegawai($_POST);
       echo "
         <script>
           alert('Pegawai berhasil ditambahkan!');
@@ -55,6 +57,18 @@ $unit = query("SELECT * FROM unit_kerja");
               <div class="mb-3">
                 <label for="nama" class="form-label">Nama pegawai</label>
                 <input type="text" class="form-control" name="nama" id="nama" required>
+              </div>
+
+              <!-- Username -->
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" name="username" id="username" required>
+              </div>
+
+              <!-- Password -->
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" id="password" required>
               </div>
 
               <!-- Tempat lahir -->

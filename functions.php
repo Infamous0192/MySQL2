@@ -88,12 +88,15 @@ function tambahPegawai($data)
 	$jabatan = htmlspecialchars($data["jabatan"]);
 	$tempat = htmlspecialchars($data["tempat"]);
 	$tanggal = htmlspecialchars($data["tanggal"]);
+	$username = $data['username'];
+
+	$pengguna = query("SELECT id_pengguna FROM pengguna WHERE username='$username'")[0]['id_pengguna'];
 
 	$foto = upload();
 
 	if (!$foto) return false;
 
-	$query = "INSERT INTO pegawai VALUES ('', '$unit', '$jabatan', '$nama', '$tempat', '$tanggal', '$foto')";
+	$query = "INSERT INTO pegawai VALUES ('', '$unit', '$jabatan', '$pengguna', '$nama', '$tempat', '$tanggal', '$foto')";
 	mysqli_query($conn, $query);
 
 	return mysqli_affected_rows($conn);
