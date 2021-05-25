@@ -4,12 +4,12 @@ $action = isset($url[4]) ? explode('?', $url[4]) : [''];
 
 switch (strtolower($action[0])) {
   case 'hapus':
-    if (hapusPengguna($_GET['id']) > 0) {
+    if ($db->hapusPengguna($_GET['id']) > 0) {
       header('Location: index.php/pengguna');
     }
     break;
   default:
-    if (isset($_POST["submit"]) && tambahPengguna($_POST) > 0) {
+    if (isset($_POST["submit"]) && $db->tambahPengguna($_POST) > 0) {
       echo "
         <script>
           alert('Pengguna berhasil ditambahkan!');
