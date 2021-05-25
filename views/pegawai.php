@@ -28,12 +28,12 @@ $search = isset($_GET['search']) ? $_GET['search'] : '';
 $limit = 2;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $skip = $limit * ($page - 1);
-$count = query("SELECT COUNT(*) total FROM pegawai")[0]['total'];
+$count = $db->query("SELECT COUNT(*) total FROM pegawai")[0]['total'];
 
-$data = query("SELECT * FROM pegawai p JOIN jabatan j ON p.id_jabatan=j.id_jabatan JOIN unit_kerja u ON p.id_unitkerja=u.id_unitkerja WHERE p.nama_pegawai LIKE '%$search%' LIMIT $skip, $limit");
+$data = $db->query("SELECT * FROM pegawai p JOIN jabatan j ON p.id_jabatan=j.id_jabatan JOIN unit_kerja u ON p.id_unitkerja=u.id_unitkerja WHERE p.nama_pegawai LIKE '%$search%' LIMIT $skip, $limit");
 
-$jabatan = query("SELECT * FROM jabatan");
-$unit = query("SELECT * FROM unit_kerja");
+$jabatan = $db->query("SELECT * FROM jabatan");
+$unit = $db->query("SELECT * FROM unit_kerja");
 ?>
 
 <div class="container">

@@ -22,9 +22,9 @@ $search = isset($_GET['search']) ? $_GET['search'] : '';
 $limit = 2;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $skip = $limit * ($page - 1);
-$count = query("SELECT COUNT(*) total FROM jabatan")[0]['total'];
+$count = $db->query("SELECT COUNT(*) total FROM jabatan")[0]['total'];
 
-$data = query("SELECT * FROM pengguna WHERE username LIKE '%$search%' LIMIT $skip, $limit");
+$data = $db->query("SELECT * FROM pengguna WHERE username LIKE '%$search%' LIMIT $skip, $limit");
 ?>
 
 <div class="container">
