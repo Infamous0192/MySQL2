@@ -4,17 +4,17 @@ $action = isset($url[4]) ? explode('?', $url[4]) : [''];
 
 switch (strtolower($action[0])) {
   case 'hapus':
-    if (hapusJabatan($_GET['id']) > 0) {
+    if ($db->hapusJabatan($_GET['id']) > 0) {
       header('Location: index.php/jabatan');
     }
     break;
   case 'ubah':
-    if (isset($_POST["submit"]) && ubahJabatan($_POST) > 0) {
+    if (isset($_POST["submit"]) && $db->ubahJabatan($_POST) > 0) {
       header('Location: index.php/jabatan');
     }
     break;
   default:
-    if (isset($_POST["submit"]) && tambahJabatan($_POST) > 0) {
+    if (isset($_POST["submit"]) && $db->tambahJabatan($_POST) > 0) {
       echo "
         <script>
           alert('Jabatan berhasil ditambahkan!');

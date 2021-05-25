@@ -4,19 +4,19 @@ $action = isset($url[4]) ? explode('?', $url[4]) : [''];
 
 switch (strtolower($action[0])) {
   case 'hapus':
-    if (hapusPegawai($_GET['nip']) > 0) {
+    if ($db->hapusPegawai($_GET['nip']) > 0) {
       header('Location: index.php');
     }
     break;
   case 'ubah':
-    if (isset($_POST["submit"]) && ubahPegawai($_POST) > 0) {
+    if (isset($_POST["submit"]) && $db->ubahPegawai($_POST) > 0) {
       header('Location: index.php');
     }
     break;
   default:
     if (isset($_POST["submit"]) > 0) {
-      tambahPengguna($_POST);
-      tambahPegawai($_POST);
+      $db->tambahPengguna($_POST);
+      $db->tambahPegawai($_POST);
       echo "
         <script>
           alert('Pegawai berhasil ditambahkan!');
