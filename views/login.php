@@ -6,6 +6,7 @@
   }
 
   if (isset($_POST['submit'])) {
+    $db = new Database();
     $db->login($_POST);
   }
 

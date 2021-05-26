@@ -1,6 +1,7 @@
 <?php
 $url = explode('/', getenv('REQUEST_URI'));
 $action = isset($url[4]) ? explode('?', $url[4]) : [''];
+$db = new Database();
 
 switch (strtolower($action[0])) {
   case 'hapus':

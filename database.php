@@ -206,4 +206,36 @@ class Database
 
     return mysqli_affected_rows($this->conn);
   }
+
+  function ubahPegawai($data)
+  {
+    $nip = $data["nip"];
+    $nama = htmlspecialchars($data["nama"]);
+    $unit = htmlspecialchars($data["unit"]);
+    $jabatan = htmlspecialchars($data["jabatan"]);
+    $tempat = htmlspecialchars($data["tempat"]);
+    $tanggal = htmlspecialchars($data["tanggal"]);
+    $gambarLama = htmlspecialchars($data["gambarLama"]);
+
+    // cek apakah user pilih gambar baru atau tidak
+    if ($_FILES['foto']['error'] === 4) {
+      $gambar = $gambarLama;
+    } else {
+      $gambar = $this->upload();
+    }
+
+    $query = "UPDATE pegawai SET
+                nama_pegawai = '$nama',
+                id_unitkerja = '$unit',
+                id_jabatan = '$jabatan',
+                tempat_lahir = '$tempat',
+                tanggal_lahir = '$tanggal',
+                foto = '$gambar'
+              WHERE nip = $nip
+            ";
+
+    mysqli_query($this->conn, $query);
+
+    return mysqli_affected_rows($this->conn);
+  }
 }
