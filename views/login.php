@@ -6,7 +6,7 @@
   }
 
   if (isset($_POST['submit'])) {
-    login($_POST);
+    $db->login($_POST);
   }
 
   ?>
