@@ -2,6 +2,7 @@
 $url = explode('/', getenv('REQUEST_URI'));
 $action = isset($url[4]) ? explode('?', $url[4]) : [''];
 $db = new Database();
+$print = new Printing();
 
 switch (strtolower($action[0])) {
   case 'hapus':
@@ -42,7 +43,20 @@ $unit = $db->query("SELECT * FROM unit_kerja");
     <h3>Daftar Pegawai</h3>
 
     <!-- Button trigger modal -->
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">Tambah</button>
+    <div>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">Tambah</button>
+      <div class="btn-group">
+        <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Print
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" target="_blank" href="printpdf">PDF</a></li>
+          <li><a class="dropdown-item" target="_blank" href="printexcel">EXCEL</a></li>
+          <li><a class="dropdown-item" target="_blank" href="printword">WORD</a></li>
+        </ul>
+      </div>
+    </div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -1,6 +1,8 @@
-<?php 
+<?php
+require 'vendor/autoload.php';
 require_once 'functions.php';
 require_once 'database.php';
+require_once 'services/printing.php';
 $url = explode('/', getenv('REQUEST_URI'));
 $page = isset($url[3]) ? explode('?', $url[3]) : [''];
 session_start();
@@ -25,6 +27,18 @@ switch ($page[0]) {
   case 'login':
     render('login', 'Login');
     break;
+  case 'printpdf':
+    $print = new Printing();
+    $print->pdf();
+    break;
+  case 'printexcel':
+    $print = new Printing();
+    $print->excel();
+    break;
+  case 'printword':
+    $print = new Printing();
+    $print->word();
+    break;
   case 'logout':
     logout();
     break;
@@ -32,5 +46,3 @@ switch ($page[0]) {
     render('home', 'Home');
     break;
 }
-
-?>

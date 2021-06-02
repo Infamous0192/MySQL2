@@ -7,6 +7,8 @@
     }
   ],
   "require": {
-    "fpdf/fpdf": "^1.83"
+    "fpdf/fpdf": "^1.83",
+    "phpoffice/phpword": "^0.18.1",
+    "phpoffice/phpspreadsheet": "^1.17"
   }
 }
