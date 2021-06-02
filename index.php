@@ -5,8 +5,6 @@ $url = explode('/', getenv('REQUEST_URI'));
 $page = isset($url[3]) ? explode('?', $url[3]) : [''];
 session_start();
 
-$db = new Database();
-
 switch ($page[0]) {
   case 'pegawai':
     privateRoute();

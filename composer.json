@@ -1,0 +1,12 @@
+{
+  "name": "meiza/otentikasi",
+  "authors": [
+    {
+      "name": "Dwa Meizadewa",
+      "email": "infamous0192@gmail.com"
+    }
+  ],
+  "require": {
+    "fpdf/fpdf": "^1.83"
+  }
+}
